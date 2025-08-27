@@ -1,4 +1,4 @@
-# Seva Donation Platform
+# Seva Booking Application
 
 A full-stack web application that allows users to browse **Sevas (donation services)**, add them to cart, and complete payments. Built with **React (frontend)**, **Node.js/Express (backend)**, **MongoDB (database)**, deployed on **Vercel** (frontend) and **Render** (backend).
 
