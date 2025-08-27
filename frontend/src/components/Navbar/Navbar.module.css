@@ -13,8 +13,10 @@
   padding: 0 20px;
 }
 
+/* Nav links inline */
 .navLinks {
   display: flex;
+  align-items: center;
   gap: 2rem;
   font-weight: 500;
 }
@@ -29,11 +31,17 @@
   color: #007bff;
 }
 
-.userDropdown {
-  position: relative;
+/* Make username button behave like link */
+.userBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
 }
 
-.dropdownContent {
+/* Slider styling */
+.slider {
   position: absolute;
   right: 0;
   top: 100%;
@@ -42,26 +50,31 @@
   border-radius: 4px;
   padding: 1rem;
   min-width: 250px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
   z-index: 1000;
 }
 
+.sliderOpen {
+  transform: translateX(0);
+}
+
+/* Overlay behind slider */
+.overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 500;
+}
+
+/* User info inside slider */
 .userInfo {
   border-bottom: 1px solid #eee;
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
-.orderList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.orderItem {
-  padding: 0.25rem 0;
-  border-bottom: 1px solid #f5f5f5;
-}
-
+/* Logout button styling */
 .logoutBtn {
   background: #dc3545;
   color: white;
@@ -69,6 +82,6 @@
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 1rem;
   width: 100%;
+  margin-top: 1rem;
 }

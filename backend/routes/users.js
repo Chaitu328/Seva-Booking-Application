@@ -7,7 +7,7 @@ router.get('/identity-exist', async (req, res) => {
   try {
     const { contact } = req.query;
     const user = await User.findOne({ contact });
-    res.json({ exists: !!user });
+     res.json({ exists: !!user, user: user ? { id: user.id } : null });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
