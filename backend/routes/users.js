@@ -3,6 +3,16 @@ const User = require('../models/User');
 const { generateOTP, storeOTP, verifyOTP, deleteOTP } = require('../utils/otpService');
 const router = express.Router();
 
+router.get('/identity-exist', async (req, res) => {
+  try {
+    const { contact } = req.query;
+    const user = await User.findOne({ contact });
+    res.json({ exists: !!user });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.get('/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -19,22 +29,14 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/identity-exist', async (req, res) => {
-  try {
-    const { contact } = req.query;
-    const user = await User.findOne({ contact });
-    res.json({ exists: !!user });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+
 
 router.post('/otp', async (req, res) => {
   try {
     const { contact } = req.body;
     const otp = generateOTP();
     storeOTP(contact, otp);
-    res.json({ message: 'OTP sent successfully' });
+    res.json({ message: 'OTP sent successfully',otp });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
