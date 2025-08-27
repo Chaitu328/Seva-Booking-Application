@@ -11,6 +11,7 @@ const Home = () => {
   const [sevas, setSevas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(10);
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user.user);
    const orders = useAppSelector((state) => state.orders.items);
@@ -66,7 +67,6 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      {/* User details block */}
       {user && (
         <div className={styles.userDetails}>
           <h2>Name: {user.name || 'User'}</h2>
@@ -93,21 +93,34 @@ const Home = () => {
 
       <h1 className={styles.sevaTitle}>Available Sevas</h1>
 
-      {sevas.length === 0 ? (
+       {sevas.length === 0 ? (
         <div className={styles.emptyState}>
           No sevas available at the moment.
         </div>
       ) : (
-        <div className={styles.grid}>
-          {sevas.map((seva) => (
-            <SevaCard
-              key={seva.id}
-              seva={seva}
-              onAddToCart={() => handleAddToCart(seva)}
-              onRemoveFromCart={() => handleRemoveFromCart(seva.id)}
-            />
-          ))}
-        </div>
+        <>
+          <div className={styles.grid}>
+            {sevas.slice(0, visibleCount).map((seva) => (   
+              <SevaCard
+                key={seva.id}
+                seva={seva}
+                onAddToCart={() => handleAddToCart(seva)}
+                onRemoveFromCart={() => handleRemoveFromCart(seva.id)}
+              />
+            ))}
+          </div>
+
+          {visibleCount < sevas.length && (  
+            <div className="flex justify-center mt-6">
+              <button
+                onClick={() => setVisibleCount(visibleCount + 10)}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
+              >
+                View More
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
