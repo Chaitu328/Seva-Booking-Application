@@ -9,7 +9,7 @@ A full-stack web application that allows users to browse **Sevas (donation servi
 * **Mobile OTP Authentication**
 
   * User enters mobile number.
-  * OTP verification performed.
+  * OTP verification performed (OTP will be shown in **CONSOLE**)
   * If user exists → load user profile and order history.
   * If new user → create user in DB and proceed.
 
