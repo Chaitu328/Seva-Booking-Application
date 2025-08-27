@@ -5,7 +5,7 @@ import styles from './Navbar.module.css';
 import { logout,setUser } from '../../store/slices/userSlice';
 import UserAuth from '../UserAuth/UserAuth';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api`;
 
 const Navbar = () => {
   const [showSlider, setShowSlider] = useState(false);
